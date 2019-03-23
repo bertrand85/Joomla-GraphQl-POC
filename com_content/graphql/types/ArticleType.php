@@ -26,17 +26,18 @@ class ArticleType extends ObjectType
 					],
 					'introtext' => Type::string(),
 					'fulltext' => Type::string(),
-					'params' => Type::string(),
-					'hit' => Type::string(),
+					'params' => Type::string()
 			],
 			'resolveField' => function($val, $args, $context, ResolveInfo $info) {
-				if ($info->fieldName=='id') {
+				// for testing field transformation
+				/*if ($info->fieldName=='id') {
 					return '111';
 				}
 				else {
 					return $val[$info->fieldName];
-				}
-				//return $this->{$info->fieldName}($val, $args, $context, $info);
+				}*/
+				return $val[$info->fieldName];
+				//return $this->{$info->fieldName}($val, $args, $context, $info); // with an internal method
 			},
 
 		];

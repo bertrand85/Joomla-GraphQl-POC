@@ -1,14 +1,20 @@
 <?php
 
-namespace JGraphQL\Content;
+namespace JGraphQL\Content;  // <- namespace
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+
+// use for component namespace
 use JGraphQL\Content\ComContentTypes;
 
 
-class QueryType extends ObjectType
+/**
+* Do not change class name?
+ * Class QueryType
+ * @package JGraphQL\Hikashop
+*/class QueryType extends ObjectType
 {
 	public function __construct()
 	{
