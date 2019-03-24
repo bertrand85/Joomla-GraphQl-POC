@@ -20,7 +20,7 @@ This i my first contribution on Joomla developpment, Tell me if it's interesting
 So, I'm french with a bad English no?
 
 # add graphQl-php in joomla libraries\vendor dir
-download or clone from webonix repo 
+download or clone from webonix repo in vendor/graphql-php-master dir
 https://github.com/webonyx/graphql-php
 
 # use this repo
