@@ -3,7 +3,7 @@ namespace JGraphQL;
 
 defined('_JEXEC') or die;
 $loader = include JPATH_LIBRARIES . '/vendor/autoload.php';
-$loader->setPsr4('GraphQL\\', [JPATH_LIBRARIES . "/vendor/graphql-php/src/"]);
+$loader->setPsr4('GraphQL\\', [JPATH_LIBRARIES . "/vendor/graphql-php-master/src/"]);
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
