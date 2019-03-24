@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "0f71dd26-e139-4fc0-b9e0-8b556933271f",
+		"name": "Joomla graphql",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "com_content",
+			"description": "",
+			"item": [
+				{
+					"name": "articles list for a category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query {articles(category:2){id,title}}\" }"
+						},
+						"url": {
+							"raw": "codeximdirect.test/index.php?component=com_content&task=graphql.query",
+							"host": [
+								"codeximdirect",
+								"test"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "component",
+									"value": "com_content"
+								},
+								{
+									"key": "task",
+									"value": "graphql.query"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "an article by id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query {article(id:2){title,alias,introtext,params}}\" }"
+						},
+						"url": {
+							"raw": "codeximdirect.test/index.php?component=com_content&task=graphql.query",
+							"host": [
+								"codeximdirect",
+								"test"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "component",
+									"value": "com_content"
+								},
+								{
+									"key": "task",
+									"value": "graphql.query"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all categories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query {categories{id,title,alias,description}}\" }"
+						},
+						"url": {
+							"raw": "codeximdirect.test/index.php?component=com_content&task=graphql.query",
+							"host": [
+								"codeximdirect",
+								"test"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "component",
+									"value": "com_content"
+								},
+								{
+									"key": "task",
+									"value": "graphql.query"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all sub categories for a parent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query {categories(parent_id:8){id,parent_id,title,alias,description}}\" }"
+						},
+						"url": {
+							"raw": "codeximdirect.test/index.php?component=com_content&task=graphql.query",
+							"host": [
+								"codeximdirect",
+								"test"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "component",
+									"value": "com_content"
+								},
+								{
+									"key": "task",
+									"value": "graphql.query"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "a category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query {category(id:20){id,parent_id,title,alias,description}}\" }"
+						},
+						"url": {
+							"raw": "codeximdirect.test/index.php?component=com_content&task=graphql.query",
+							"host": [
+								"codeximdirect",
+								"test"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "component",
+									"value": "com_content"
+								},
+								{
+									"key": "task",
+									"value": "graphql.query"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"id": "7468e670-ab19-43db-ae8b-81391a39dc58",
+			"key": "sitename",
+			"value": "codeximdirect.test",
+			"type": "string",
+			"description": ""
+		}
+	]
+}
