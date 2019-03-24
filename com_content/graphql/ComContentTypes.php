@@ -4,6 +4,7 @@ namespace JGraphQL\Content;
 
 use JGraphQL\Content\Types\ArticleType;
 use JGraphQL\Content\QueryType;
+use JGraphQL\Content\Types\CategoryType;
 
 /**
  * Class ComContentTypes
@@ -14,7 +15,7 @@ class ComContentTypes
 	// Object types:
 	private static $query;
 	private static $article;
-	private static $articles;
+	private static $category;
 
 	/**
 	 * @return queryType
@@ -22,6 +23,14 @@ class ComContentTypes
 	public static function query()
 	{
 		return self::$query ?: (self::$query = new QueryType());
+	}
+
+	/**
+	 * @return CategoryType
+	 */
+	public static function category()
+	{
+		return self::$category ?: (self::$category = new CategoryType());
 	}
 
 	/**

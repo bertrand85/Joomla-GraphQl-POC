@@ -21,6 +21,18 @@ use JGraphQL\Content\ComContentTypes;
 		$config = [
 			'name'   => 'query',
 			'fields' => [
+				'category' => [
+					'type'    => ComContentTypes::category(),
+					'args'    => [
+						'id' => ['type' => Type::int()],
+					]
+				],
+				'categories' => [
+					'type'    => Type::listOf(ComContentTypes::category()),
+					'args'    => [
+						'parent_id' => ['type' => Type::int()],
+					]
+				],
 				'article' => [
 					'type'    => ComContentTypes::article(),
 					'args'    => [
@@ -30,12 +42,7 @@ use JGraphQL\Content\ComContentTypes;
 				'articles' => [
 					'type'    => Type::listOf(ComContentTypes::article()),
 					'args'    => [
-						'category' => ['type' => Type::int()],
-						'limit' => [
-							'type' => Type::int(),
-							'description' => 'Limit the number of recent likes returned',
-							'defaultValue' => 10
-						]
+						'category' => ['type' => Type::int()]
 					]
 				],
 				'fieldWithException' => [
@@ -52,6 +59,52 @@ use JGraphQL\Content\ComContentTypes;
 		parent::__construct($config);
 	}
 
+    /**
+     * Categories
+     *
+     * @param $rootValue
+     * @param $args
+     * @return array|null
+     */
+    public function categories($rootValue, $args) {
+        $model =  $rootValue['controller']->getModel('Categories', 'ContentModel');
+        $app =  $rootValue['app'];
+
+        // set some input values
+        $id = $args['parent_id'];
+        if(!$id)
+            $app->input->set('id', 'root');
+        else
+            $app->input->set('id', $id);
+
+        $items = $model->getItems(true);
+        if ( $items )
+            foreach ($items as $item) {
+                $result[] = (array)$item;
+            }
+        else
+            $result=null;
+
+
+        return $result;
+	}
+
+    /**
+     * @param $rootValue
+     * @param $args
+     * @return mixed
+     */
+    public function category($rootValue, $args) {
+        $model =  $rootValue['controller']->getModel('Category', 'ContentModel');
+        $app =  $rootValue['app'];
+
+        // set some $input
+        $app->input->set('id', $args['id']);
+
+        $item = $model->getCategory();
+
+        return $item;
+    }
 	/**
 	 * @param $rootValue
 	 * @param $args
