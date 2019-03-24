@@ -44,3 +44,4 @@ https://github.com/webonyx/graphql-php
 
 
 Look at grapql controller for url to call joomla graphql api for each component
+or in postman collection file
