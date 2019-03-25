@@ -20,8 +20,39 @@ class JgraphqlControllerBase extends BaseController {
 	{
 
 		parent::__construct($config);
+		$this->checkUserToken();
 	}
 
+    /**
+     * check header token
+     */
+    public function checkUserToken()
+    {
+        $session = \JFactory::getSession();
+        $db = \JFactory::getDbo();
+
+        $user = new \JUser();
+        $session->set('user', $user );
+
+        if( isset( $_SERVER['HTTP_AUTHORIZATION'] ) ) {
+            $token = $_SERVER['HTTP_AUTHORIZATION'];
+            $db->setQuery( 'SELECT item_id FROM #__fields fld LEFT JOIN #__fields_values fldv ON fldv.field_id=fld.id 
+                            WHERE fld.name="token" AND fldv.value="'.$token.'"');
+
+            $uid = $db->loadResult();
+            if( $uid ) {
+                $user->load( $uid );
+
+                $session->set('user', $user );
+
+            }
+
+        }
+    }
+
+    /**
+     *
+     */
 	public function query() {
 
 		try
