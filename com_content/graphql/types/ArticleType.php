@@ -30,17 +30,24 @@ class ArticleType extends ObjectType
 			],
 			'resolveField' => function($val, $args, $context, ResolveInfo $info) {
 				// for testing field transformation
-				/*if ($info->fieldName=='id') {
-					return '111';
-				}
-				else {
-					return $val[$info->fieldName];
-				}*/
-				return $val[$info->fieldName];
-				//return $this->{$info->fieldName}($val, $args, $context, $info); // with an internal method
+                $methodName = 'process'.ucfirst($info->fieldName);
+
+                if( method_exists( $this, $methodName ) ) {
+                    return $this->$methodName($val, $args, $context, $info);
+                }
+
+                return $val[$info->fieldName];
 			},
 
 		];
 		parent::__construct($config);
 	}
+
+    /**
+     * @return string
+     */
+/*	private function processTitle( $val, $args, $context, $info ) {
+	    return utf8_decode( $val[$info->fieldName] );
+    }
+*/
 }
