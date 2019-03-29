@@ -64,7 +64,7 @@ class JgraphqlControllerBase extends BaseController {
 
 			if( is_null($input) ) {
 				$rawInput = file_get_contents('php://input');
-				$decodeInput = json_decode($rawInput, true);
+				$decodeInput = json_decode( trim( $rawInput) , true);
 				$input = $decodeInput['query'];
 			}
 
@@ -85,6 +85,32 @@ class JgraphqlControllerBase extends BaseController {
 		echo json_encode($output);
 		exit();
 	}
+
+    /**
+     *
+     */
+	public function discover() {
+	    $query = $this->schema->getTypeMap();
+
+	    $queries = $query['query']->config;
+        echo "<table>";
+	    foreach ($queries['fields'] as $name=>$qfield) {
+            echo "<tr>";
+	        echo "<td>$name</td>";
+
+            echo "<td>";
+
+            $f = $qfield["type"]->config["fields"];
+            foreach ( $f as $fname=>$ffield){
+                echo $fname."<br />";
+            }
+            echo "</td";
+
+            echo "</tr>";
+        }
+        echo "</table>";
+        exit();
+    }
 
 }
 

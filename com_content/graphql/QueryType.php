@@ -42,7 +42,7 @@ use JGraphQL\Content\ComContentTypes;
 				'articles' => [
 					'type'    => Type::listOf(ComContentTypes::article()),
 					'args'    => [
-						'category' => ['type' => Type::int()]
+						'category' => ['type' => Type::int()],
 					]
 				],
 				'fieldWithException' => [
